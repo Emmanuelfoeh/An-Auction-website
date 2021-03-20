@@ -1,0 +1,37 @@
+{% extends "auctions/layout.html" %}
+{% load static %}
+
+
+<link href="{% static 'auctions/styles.css' %}" rel="stylesheet">
+{% block body %}
+
+
+<h1>Active Listing</h1>
+{% if active_list %}
+<ul>
+  {% for auction in active_list %}
+    <li class="list_auction">
+     
+        <div class="auction">
+            <img class = "img-fluid" src="{{auction.Image.url}}" alt="auction image" >
+            
+            <div class="auctions_info">
+                <a href="{{ auction.get_absolute_url }}">{{auction.Title}}</a>
+                <p class="body">{{auction.summary}}</p>
+                <p class="short"> Price: {{auction.Price}}</p>
+                <p class="short"> Posted :{{auction.pub_date}}</p>
+                <p class="short"> Category: {{auction.category}}</p>
+                <a href="{% url 'watchlist' auction.id %}" role="button" class="btn btn-outline-success btn-sm">Add to Watchlist</a>
+            </div>            
+        </div>
+       
+    </li>
+  {% endfor %}
+</ul>
+
+ {% else %}
+ <p>There are no Auctions listing now.</p>
+{% endif %}
+
+
+{% endblock %}

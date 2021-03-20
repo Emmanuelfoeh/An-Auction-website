@@ -1,0 +1,34 @@
+{% extends "auctions/layout.html" %}
+
+
+{% block body %}
+<div class="container">
+
+    <h1>Listing: {{auctions.Title}}</h1>
+<a href="#" role="button" class="btn btn-outline-success btn xsm">Watchlist</a>
+<p><img class = "img-fluid" src="{{auctions.Image.url}}" alt="auction image" height= 200 width= 200></p>
+<p><strong>Description:</strong> {{auctions.summary}}</p>
+<p><strong>Price:</strong>{{auctions.Price}}</p>
+<p><strong>Date Listed:</strong> {{auctions.pub_date}}</p>
+
+<!-- Bid is just a form for someone to input price-->
+<form action="#" method="POST">
+    {% csrf_token %}
+
+    <input type="number" name="bid" placeholder="Bid">
+    <br>
+
+    <button style="margin-top: 6px;">Place Bid</button>
+</form>
+
+
+<h4>Details</h4>
+<ul>
+    <li> Listed by : {{ auctions.Creator }}</li>
+    <li>Category:  {{ auctions.category }} </li> 
+</ul>
+</div>
+
+
+ {% endblock %}
+
